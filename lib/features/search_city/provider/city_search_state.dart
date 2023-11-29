@@ -1,4 +1,4 @@
-import 'package:weather_app/features/search_city/data/model/city_search_result.dart';
+import 'package:weather_app/features/search_city/data/model/city_search_model.dart';
 
 sealed class CitySearchState{}
 

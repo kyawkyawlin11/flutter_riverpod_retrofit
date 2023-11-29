@@ -15,7 +15,7 @@ class CitySearchResult {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     if (this.results != null) {
       data['results'] = this.results!.map((v) => v.toJson()).toList();
     }
@@ -29,7 +29,7 @@ class Results {
   String? name;
   double? latitude;
   double? longitude;
-  int? elevation;
+  double? elevation;
   String? featureCode;
   String? countryCode;
   int? admin1Id;

@@ -1,8 +1,7 @@
 
-import 'package:flutter/material.dart';
 import 'package:retrofit/retrofit.dart';
-import 'package:weather_app/common/constant/constant.dart';
-import 'package:weather_app/features/search_city/data/model/city_search_result.dart';
+import 'package:weather_app/helper/constant/constant.dart';
+import 'package:weather_app/features/search_city/data/model/city_search_model.dart';
 import 'package:dio/dio.dart';
 
 part 'city_search_service.g.dart';
