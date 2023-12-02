@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weather_app/features/current_weather/data/model/current_weather.dart';
@@ -17,6 +18,7 @@ class CurrentWeatherScreen extends ConsumerStatefulWidget {
 }
 
 class _CurrentWeatherScreenState extends ConsumerState<CurrentWeatherScreen> {
+  
   @override
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
@@ -31,14 +33,14 @@ class _CurrentWeatherScreenState extends ConsumerState<CurrentWeatherScreen> {
       // appBar: AppBar(),
       body: Stack(
         children: [
-          
           _weatherWidget(currentWeatherState),
+          if(!kIsWeb)
           SafeArea(
             child: IconButton(
               onPressed: (){
                 Navigator.pop(context);
               }, 
-            icon: Icon(Icons.arrow_back)
+            icon: const Icon(Icons.arrow_back)
             ),
           ),
         ],
@@ -61,8 +63,7 @@ class _CurrentWeatherScreenState extends ConsumerState<CurrentWeatherScreen> {
       CurrentWeatherLoading() => const Center(
           child: CircularProgressIndicator(),
         ),
-      CurrentWeatherSuccess(currentWeatherModel: CurrentWeatherModel current) =>
-        CurrentWeatherWidget(widget: widget, current: current),
+      CurrentWeatherSuccess(currentWeatherModel: CurrentWeatherModel current) => CurrentWeatherWidget(widget: widget, current: current),
       CurrentWeatherFail(errorMessage: String error) => Center(
           child: Text(error),
         ),

@@ -4,6 +4,8 @@ import 'package:weather_app/features/search_city/data/model/city_search_model.da
 import 'package:weather_app/features/search_city/provider/city_search_provider.dart';
 import 'package:weather_app/features/search_city/provider/city_search_state.dart';
 import 'package:weather_app/features/search_city/ui/widget/citylist_widget.dart';
+import 'package:weather_app/features/theme/provider/theme_provider.dart';
+import 'package:weather_app/features/theme/provider/theme_state.dart';
 
 class CitySearchScreen extends ConsumerStatefulWidget {
   const CitySearchScreen({super.key});
@@ -18,13 +20,27 @@ class _CitySearchScreenState extends ConsumerState<CitySearchScreen> {
   Widget build(BuildContext context) {
     CitySearchState citySearchState = ref.watch(citySearchProvider);
     final mProvider =  ref.watch(citySearchProvider.notifier);
+    final weatherTheme = ref.watch(themeProvider);
+    final weatherNotifier = ref.read(themeProvider.notifier);
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(title: Text('Rivverpod Weather'), centerTitle: true,
+      actions: [
+        Switch(value: (weatherTheme is DarkWeatherTheme) , 
+        onChanged: (value){
+          if(value){
+            weatherNotifier.changeTheme(DarkWeatherTheme());
+          }else{
+            weatherNotifier.changeTheme(LightWeatherTheme());
+          }
+        })
+      ],),
       body:  Column(
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
+              keyboardType: TextInputType.text,
+              textInputAction: TextInputAction.search,
               controller: _citySearchTextController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
@@ -34,13 +50,18 @@ class _CitySearchScreenState extends ConsumerState<CitySearchScreen> {
                   String city = _citySearchTextController.text.trim();
                   if(city.isEmpty){
                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please Enter Completely')));
-
                   }else{
                     mProvider.searchCity(city);
                   }
                 }, 
-                icon: const Icon(Icons.search))
+                icon: const Icon(Icons.search)),
+              
               ),
+              onSubmitted: (str) {
+                if(str.isNotEmpty){
+                  mProvider.searchCity(str);
+                }
+              },
             ),
           ),
           Expanded(child: _citySearchResultWidget(citySearchState)),

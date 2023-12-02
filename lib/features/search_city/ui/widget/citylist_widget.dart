@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:weather_app/features/search_city/data/model/city_search_model.dart';
@@ -16,12 +17,20 @@ class CityListWidget extends StatelessWidget {
         Results results = citySearchResult.results![index];
         return InkWell(
           onTap: (){
-            context.push('/current',
-            extra: {
-              'lati':results.latitude.toString(),
-            'longi':results.longitude.toString(),
-            'city':results.name}
-            );
+            if(kIsWeb){
+              // for web path parameter
+              context.go('/current/${results.latitude}/${results.longitude}/${results.name}');
+            }else{
+              context.go('/current/${results.latitude}/${results.longitude}/${results.name}');
+            //   context.push('/current',
+            // extra: {
+            //   'lati':results.latitude.toString(),
+            // 'longi':results.longitude.toString(),
+            // 'city':results.name
+            // }
+            // );
+            }
+            
           },
           child: Card(
             child: Row(
