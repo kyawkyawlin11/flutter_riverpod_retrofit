@@ -1,6 +1,6 @@
-# Flutter Weather App
+# Flutter Riverpod, Retrofit, Go-router, web Example project.
 
-Flutter Riverpod, Retrofit, Go-router, web Example project.
+Flutter Weather App Sample
 
 ## Getting Started
 
