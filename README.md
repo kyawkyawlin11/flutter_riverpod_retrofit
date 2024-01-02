@@ -1,6 +1,6 @@
-# weather_app
+# Flutter Weather App
 
-A new Flutter project.
+Flutter Riverpod, Retrofit, Go-router, web Example project.
 
 ## Getting Started
 
