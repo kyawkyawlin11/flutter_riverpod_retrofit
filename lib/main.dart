@@ -13,7 +13,9 @@ void main() {
 class MyApp extends ConsumerWidget {
   MyApp({super.key});
 
-  final _router = GoRouter(initialLocation: '/', routes: [
+  final _router = GoRouter(
+    initialLocation: '/', 
+  routes: [
     StatefulShellRoute.indexedStack(
         builder: (context, state, StatefulNavigationShell navigationShell) {
           return NavigationShellWidget(

@@ -13,7 +13,7 @@ class CitySearchProvider extends Notifier<CitySearchState> {
   }
 
   late final Dio dio = ref.read(dioProvider);
-  late final CityApiService _cityServiceApi = CityApiService(dio);
+  late final CitySearchApiService _cityServiceApi = CitySearchApiService(dio);
   void searchCity(String name) async {
     state = CitySearchLoading();
 

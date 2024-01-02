@@ -8,7 +8,7 @@ part of 'city_search_service.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
-class _CityApiService implements CityApiService {
+class _CityApiService implements CitySearchApiService {
   _CityApiService(
     this._dio, {
     this.baseUrl,

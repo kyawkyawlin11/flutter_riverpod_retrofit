@@ -7,9 +7,10 @@ import 'package:dio/dio.dart';
 part 'city_search_service.g.dart';
 
 @RestApi(baseUrl: ApiConst.citySearchBaseUrl)
-abstract class CityApiService{
+abstract class CitySearchApiService{
 
-  factory CityApiService(Dio dio)=> _CityApiService(dio);
+  factory CitySearchApiService(Dio dio)=> _CityApiService(dio);
+  
   @GET(ApiConst.citySearchEndPoint)
   Future<CitySearchResult> searchCity({
     @Query('name') required String name, 
